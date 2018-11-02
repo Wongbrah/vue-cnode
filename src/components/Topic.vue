@@ -1,19 +1,19 @@
 <template>
   <div class="topic">
     <div class="avatar">
-      <router-link to="#">
+      <router-link :to="{path: `/user/${topic.author.loginname}`}">
         <img :src="topic.author.avatar_url" alt="" width="40px" height="40px">
       </router-link>
     </div>
-    <div class="tag">
+    <div class="tag" v-if="topic.tab">
       <div v-if="topic.top">置顶</div>
       <div v-else>{{topic.tab | getTabName}}</div>
     </div>
     <div class="main">
-      <router-link :to="{path: `topic/${topic.id}`}">
+      <router-link :to="{path: `/topic/${topic.id}`}">
         <div class="title">{{topic.title}}</div>
       </router-link>
-      <div class="info">{{topic.reply_count}} / {{topic.visit_count}}</div>
+      <div class="info" v-if="topic.reply_count">{{topic.reply_count}} / {{topic.visit_count}}</div>
     </div>
     <div class="time">{{topic.last_reply_at | getTime}}</div>
   </div>
@@ -24,31 +24,6 @@ import timeago from '@/utils/timeago'
 export default {
   props: {
     topic: Object
-  },
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  methods: {
-    // getTabName(tab) {
-    //   let result = ''
-    //   switch (tab) {
-    //     case 'good':
-    //       result = '精华'
-    //       break
-    //     case 'share':
-    //       result = '分享'
-    //       break
-    //     case 'ask':
-    //       result = '问答'
-    //       break
-    //     case 'job':
-    //       result = '招聘'
-    //       break
-    //   }
-    //   return result
-    // }
   },
   filters: {
     getTime (time) {
@@ -76,7 +51,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 a {
   color: #000;

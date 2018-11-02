@@ -22,7 +22,11 @@ export default new Router({
       }
     },
     {
-      path: '/share'
+      path: '/user/:loginname',
+      component: (resolve) => require(['@/views/User'], resolve),
+      meta: {
+        keepAlive: false
+      }
     },
     {
       path: '/ask'
