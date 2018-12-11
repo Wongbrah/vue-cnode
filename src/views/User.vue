@@ -1,5 +1,6 @@
 <template>
-  <div class="background">
+  <div ref='page' class="background">
+    <!-- 个人信息 -->
     <div class="panel">
       <div class="header">
         <router-link :to="{path: '/index'}">主页</router-link><span> /</span>
@@ -12,6 +13,7 @@
         <p>注册时间为 {{user.create_at | getTime}}</p>
       </div>
     </div>
+    <!-- 最近创建的话题 -->
     <div class="panel">
       <div class="header">最近创建的话题</div>
       <div class="list">
@@ -19,6 +21,7 @@
       </div>
       <div class="info" v-show="!user.recent_topics.length">无</div>
     </div>
+    <!-- 最近参与的话题 -->
     <div class="panel">
       <div class="header">最近参与的话题</div>
       <div class="list">
@@ -63,6 +66,9 @@ export default {
     //       console.log(err)
     //     })
     // }
+    scrollToTop () {
+      this.$refs.page.parentNode.scrollTop = 0
+    }
   },
   async mounted () {
     // console.log('user view mounted')
@@ -73,6 +79,13 @@ export default {
   computed: {
     github () {
       return 'https://github.com/' + this.user.githubUsername
+    }
+  },
+  watch: {
+    async '$route' () {
+      const res = await getUserInfo(this.$route.params.loginname)
+      this.user = res.data
+      this.scrollToTop()
     }
   },
   filters: {

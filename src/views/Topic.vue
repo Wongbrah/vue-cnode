@@ -10,7 +10,7 @@
     <div class="reply" v-for="(item, index) in topic.replies" :key="index" ref="replys">
       <div class="reply_title">
         <div class="avatar">
-          <router-link to="#">
+          <router-link :to="{path: `/user/${item.author.loginname}`}">
             <img :src="item.author.avatar_url" alt="" width="30px" height="30px">
           </router-link>
         </div>
