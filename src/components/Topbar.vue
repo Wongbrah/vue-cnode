@@ -2,11 +2,15 @@
   <div>
     <div class="topbar" v-show="isShow">
       <div class="nav">
-        <div class="btn" @click="back">back</div>
+        <div class="btn" @click="back">
+          <span class="iconfont icon-fanhui"></span>
+        </div>
           <div class="logo">
             <img src="//static2.cnodejs.org/public/images/cnodejs_light.svg" alt="logo" height="30px">
           </div>
-        <div class="btn" @click="menu">menu</div>
+        <div class="btn" @click="menu">
+          <span class="iconfont icon-weibiaoti12"></span>
+        </div>
       </div>
     </div>
   </div>

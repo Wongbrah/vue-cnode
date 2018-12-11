@@ -44,7 +44,10 @@ export default {
   },
   data () {
     return {
-      user: {}
+      user: {
+        recent_topics: [],
+        recent_replies: []
+      }
     }
   },
   methods: {
@@ -61,6 +64,7 @@ export default {
     }
   },
   mounted () {
+    console.log('user view mounted')
     this.getUserInfo(this.$route.params.loginname)
   },
   computed: {
