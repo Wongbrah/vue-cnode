@@ -16,8 +16,9 @@
 <script>
 import Topic from '@/components/Topic'
 import ScrollToTop from '@/components/ScrollToTop'
+import { getTopics } from '@/request/api'
 
-const urlPrefix = 'https://cnodejs.org/api/v1'
+// const urlPrefix = 'https://cnodejs.org/api/v1'
 
 export default {
   components: {
@@ -29,33 +30,37 @@ export default {
       topics: []
     }
   },
-  mounted () {
+  async mounted () {
     // 获取url参数
-    this.getTopics(this.$route.query.tab)
+    // this.getTopics(this.$route.query.tab)
+    const res = await getTopics(this.$route.query.tab || 'all')
+    this.topics = res.data
   },
   methods: {
     // 获取文章列表
-    getTopics (tab = 'all') {
-      this.$http.get(urlPrefix + `/topics?tab=${tab}`)
-        .then((res) => {
-          // console.log(res.data)
-          if (res.data.success) {
-            this.topics = res.data.data
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
+    // getTopics (tab = 'all') {
+    //   this.$http.get(urlPrefix + `/topics?tab=${tab}`)
+    //     .then((res) => {
+    //       // console.log(res.data)
+    //       if (res.data.success) {
+    //         this.topics = res.data.data
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    // },
     scrollToTop () {
       this.$refs.tab.parentNode.scrollTop = 0
     }
   },
   watch: {
     // 监听路由变化，获取不同类型文章列表
-    '$route' () {
+    async '$route' () {
       if (this.$route.path === '/index') {
-        this.getTopics(this.$route.query.tab)
+        // this.getTopics(this.$route.query.tab)
+        const res = await getTopics(this.$route.query.tab || 'all')
+        this.topics = res.data
         this.scrollToTop()
       }
     }
@@ -68,24 +73,24 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .tab {
   display: flex;
   background: #f6f6f6;
   text-align: center;
   padding: 5px;
-}
 
-.tab a {
-  margin: 0 5px;
-  text-decoration: none;
-  color: #80bd01;
-}
+  a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #80bd01;
+  }
 
-.tab .active {
-  background: #80bd01;
-  color: #fff;
-  border-radius: 10%;
-  padding: 0 3px;
+  .active {
+    background: #80bd01;
+    color: #fff;
+    border-radius: 10%;
+    padding: 0 3px;
+  }
 }
 </style>

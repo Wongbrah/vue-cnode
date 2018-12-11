@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .topbar {
   display: flex;
   flex-direction: column;
@@ -45,14 +45,14 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.nav .btn {
-  color: white;
-  margin: 10px 15px;
-}
+  .btn {
+    color: white;
+    margin: 10px 15px;
+  }
 
-.nav .logo {
-  margin: 15px 0px;
+  .logo {
+    margin: 15px 0px;
+  }
 }
 </style>

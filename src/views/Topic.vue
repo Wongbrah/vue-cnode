@@ -1,10 +1,12 @@
 <template>
   <div class="background">
+    <!-- 文章标题和内容 -->
     <div class="topic">
       <div class="topic_title">{{topic.title}}</div>
       <div class="topic_content" v-html="topic.content"></div>
     </div>
     <div class="division">{{topic.reply_count}} 回复</div>
+    <!-- 文章回复 -->
     <div class="reply" v-for="(item, index) in topic.replies" :key="index" ref="replys">
       <div class="reply_title">
         <div class="avatar">
@@ -16,7 +18,10 @@
         <div class="reply_time">{{index + 1}}楼·{{item.create_at | getTime}}</div>
         <div class="author" v-if="item.author.loginname == topic.author.loginname">作者</div>
         <div class="blank"></div>
-        <div class="likes">{{item.ups.length}}</div>
+        <div class="likes">
+          <span class="iconfont icon-zan"></span>
+          {{item.ups.length}}
+        </div>
       </div>
       <div class="reply_content" v-html="item.content"></div>
     </div>
@@ -25,8 +30,9 @@
 
 <script>
 import timeago from '@/utils/timeago'
+import { getTopicContent } from '@/request/api'
 
-const urlPrefix = 'https://cnodejs.org/api/v1'
+// const urlPrefix = 'https://cnodejs.org/api/v1'
 
 export default {
   data () {
@@ -35,20 +41,22 @@ export default {
     }
   },
   methods: {
-    getTopicContent (id) {
-      this.$http.get(urlPrefix + `/topic/${id}`)
-        .then((res) => {
-          if (res.data.success) {
-            this.topic = res.data.data
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
+    // getTopicContent (id) {
+    //   this.$http.get(urlPrefix + `/topic/${id}`)
+    //     .then((res) => {
+    //       if (res.data.success) {
+    //         this.topic = res.data.data
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    // }
   },
-  mounted () {
-    this.getTopicContent(this.$route.params.id)
+  async mounted () {
+    // this.getTopicContent(this.$route.params.id)
+    const res = await getTopicContent(this.$route.params.id)
+    this.topic = res.data
   },
   filters: {
     getTime (time) {
@@ -58,7 +66,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .normalize {
   margin: 0;
 }
@@ -70,20 +78,30 @@ export default {
 
 .topic {
   margin: 0 5px;
-}
 
-.topic .topic_title {
-  background: #fff;
-  font-size: 20px;
-  padding: 10px;
-  border-radius: 3px 3px 0 0;
-}
+  .topic_title {
+    background: #fff;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 3px 3px 0 0;
+  }
 
-.topic .topic_content {
-  background: #fff;
-  padding: 10px;
-  border-top: 1px solid #e5e5e5;
-  border-radius: 3px 3px 0 0;
+  .topic_content {
+    background: #fff;
+    padding: 10px;
+    border-top: 1px solid #e5e5e5;
+    border-radius: 3px 3px 0 0;
+
+    & /deep/ img {
+      max-width: 100%;
+    }
+
+    & /deep/ a {
+      color: #08c;
+      text-decoration: none;
+      word-break:break-all;
+    }
+  }
 }
 
 .division {
@@ -98,49 +116,58 @@ export default {
   border-top: 1px solid #f0f0f0;
   background: #fff;
   padding: 10px 0;
-}
 
-.reply >>> * {
-  margin: 0;
-}
+  .reply_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
 
-.reply >>> a {
-  color: #08c;
-  text-decoration: none;
-}
+    .reply_time {
+      font-size: 11px;
+      color: #08c;
+    }
 
-.reply .reply_title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-}
+    .author {
+      color: #fff;
+      background: #6ba44e;
+      padding: 2px;
+      font-size: 12px;
+    }
 
-.reply .reply_title > * {
-  margin: 0 8px;
-}
+    .blank {
+      flex: 1;
+    }
 
-.reply .reply_title .reply_time {
-  font-size: 11px;
-  color: #08c;
-}
+    .avatar img {
+      border-radius: 10%;
+    }
+  }
 
-.reply .reply_title .author {
-  color: #fff;
-  background: #6ba44e;
-  padding: 2px;
-  font-size: 12px;
-}
+  .reply_title > * {
+    margin: 0 8px;
+  }
 
-.reply .reply_title .blank {
-  flex: 1;
-}
+  .reply_content {
+    padding: 10px;
 
-.reply .reply_title .avatar img {
-  border-radius: 10%;
-}
+    & /deep/ img {
+      max-width: 100%;
+    }
 
-.reply .reply_content {
-  padding: 10px;
+    & /deep/ a {
+      color: #08c;
+      text-decoration: none;
+      word-break:break-all;
+    }
+
+    & /deep/ code {
+      word-break:break-all;
+    }
+  }
+
+  & /deep/ * {
+    margin: 0;
+  }
 }
 </style>

@@ -34,8 +34,9 @@
 import timeago from '@/utils/timeago'
 import Topic from '@/components/Topic'
 import ScrollToTop from '@/components/ScrollToTop'
+import { getUserInfo } from '@/request/api'
 
-const urlPrefix = 'https://cnodejs.org/api/v1'
+// const urlPrefix = 'https://cnodejs.org/api/v1'
 
 export default {
   components: {
@@ -51,25 +52,27 @@ export default {
     }
   },
   methods: {
-    getUserInfo (loginname) {
-      this.$http.get(urlPrefix + `/user/${loginname}`)
-        .then((res) => {
-          if (res.data.success) {
-            this.user = res.data.data
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
+    // getUserInfo (loginname) {
+    //   this.$http.get(urlPrefix + `/user/${loginname}`)
+    //     .then((res) => {
+    //       if (res.data.success) {
+    //         this.user = res.data.data
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    // }
   },
-  mounted () {
-    console.log('user view mounted')
-    this.getUserInfo(this.$route.params.loginname)
+  async mounted () {
+    // console.log('user view mounted')
+    // this.getUserInfo(this.$route.params.loginname)
+    const res = await getUserInfo(this.$route.params.loginname)
+    this.user = res.data
   },
   computed: {
     github () {
-      return 'github.com/' + this.user.githubUsername
+      return 'https://github.com/' + this.user.githubUsername
     }
   },
   filters: {
@@ -80,7 +83,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 p, span {
   color: #778087;
 }
@@ -92,31 +95,38 @@ p, span {
 
 .panel {
   margin: 0 5px;
-}
 
-.panel .header {
-  padding: 10px;
-  background-color: #f6f6f6;
-  border-radius: 3px 3px 0 0;
-}
+  .header {
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-radius: 3px 3px 0 0;
 
-.panel .header a {
-  color: #80bd01;
-  text-decoration: none;
-}
+    a {
+      color: #80bd01;
+      text-decoration: none;
+    }
+  }
 
-.panel .info {
-  padding: 10px;
-  border-top: 1px solid #e5e5e5;
-  background: #fff;
-}
+  .header {
+    a {
+      color: #80bd01;
+      text-decoration: none;
+    }
+  }
 
-.panel .info img {
-  border-radius: 10%;
-  margin-right: 10px;
-}
+  .info {
+    padding: 10px;
+    border-top: 1px solid #e5e5e5;
+    background: #fff;
 
-.panel .list {
-  background: #fff;
+    img {
+      border-radius: 10%;
+      margin-right: 10px;
+    }
+  }
+
+  .list {
+    background: #fff;
+  }
 }
 </style>
