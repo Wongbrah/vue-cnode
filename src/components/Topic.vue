@@ -49,6 +49,9 @@ export default {
         case 'job':
           result = '招聘'
           break
+        case 'dev':
+          result = '测试'
+          break
       }
       return result
     }

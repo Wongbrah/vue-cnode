@@ -3,21 +3,23 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const urlPrefix = `https://cnodejs.org/api/v1`
+// const urlPrefix = `https://cnodejs.org/api/v1`
 
 const store = new Vuex.Store({
   state: {
-    tabNow: ''
+    isShowMenu: false
   },
   mutations: {
-    changeTab (state, tab = 'all') {
-      state.tabNow = tab
+    closeAll (state) {
+      state.isShowMenu = false
+    },
+    switchMenu (state) {
+      console.log('switchMenu')
+      state.isShowMenu = !state.isShowMenu
     }
   },
   actions: {
-    getTopics (context, tab) {
-      this.$http.get(urlPrefix + `topics?tab=${tab}`)
-    }
+
   }
 })
 

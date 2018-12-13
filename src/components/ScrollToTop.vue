@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .scrolltotop {
   border: 2px #80bd01 solid;
   background: #fff;
@@ -45,5 +45,9 @@ export default {
   right: 40px;
   bottom: 50px;
   z-index: 1000;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>

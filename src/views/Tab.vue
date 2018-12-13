@@ -6,7 +6,7 @@
       <router-link :to="{path: 'index', query: {tab: 'share'}}" :class="{active: tabNow === 'share'}">分享</router-link>
       <router-link :to="{path: 'index', query: {tab: 'ask'}}" :class="{active: tabNow === 'ask'}">问答</router-link>
       <router-link :to="{path: 'index', query: {tab: 'job'}}" :class="{active: tabNow === 'job'}">招聘</router-link>
-      <a href="">客户端测试</a>
+      <router-link :to="{path: 'index', query: {tab: 'dev'}}" :class="{active: tabNow === 'dev'}">客户端测试</router-link>
     </div>
     <topic v-for="(item, index) in topics" :key="index" :topic="topics[index]"></topic>
     <scroll-to-top></scroll-to-top>

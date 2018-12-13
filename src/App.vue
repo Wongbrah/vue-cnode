@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <topbar :isShow="isShow"></topbar>
+    <Masks></Masks>
+    <Topbar :isShow="isShow"></Topbar>
+    <Menu></Menu>
     <div class="content">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"/>
@@ -11,11 +13,15 @@
 </template>
 
 <script>
+import Masks from '@/components/Mask'
 import Topbar from '@/components/Topbar'
+import Menu from '@/components/Menu'
 
 export default {
   components: {
-    Topbar
+    Masks,
+    Topbar,
+    Menu
   },
   name: 'App',
   data () {
