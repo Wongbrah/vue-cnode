@@ -1,5 +1,7 @@
 <template>
-  <div class="scrolltotop" v-show="isShow" @click="scrollToTop" ref="top">↑</div>
+  <div class="scrolltotop" v-show="isShow" @click="scrollToTop" ref="top">
+    <span class="iconfont icon-top"></span>
+  </div>
 </template>
 
 <script>
@@ -35,7 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 .scrolltotop {
-  border: 1px #80bd01 solid;
+  border: .5px #80bd01 solid;
   background: #333;
   border-radius: 50%;
   width: 25px;

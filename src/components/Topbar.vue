@@ -42,7 +42,7 @@ export default {
   display: flex;
   flex-direction: column;
   background: #333;
-  border: 2px solid red;
+  // border: 2px solid red;
 }
 
 .nav {

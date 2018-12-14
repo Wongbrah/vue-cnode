@@ -45,7 +45,7 @@ body {
 
 .content {
   flex: 1;
-  border: 2px solid green;
+  /* border: 2px solid green; */
   overflow-y: scroll;
 }
 </style>

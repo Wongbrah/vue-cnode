@@ -5,10 +5,22 @@
         <img src="@/assets/logo.png" alt="" width="100%" height="100%">
       </div>
       <div class="menu-content">
-        <div class="menu-item">新建主题</div>
-        <div class="menu-item">收藏的主题</div>
-        <div class="menu-item">用户详情</div>
-        <div class="menu-item">我的消息</div>
+        <div class="menu-item">
+          <span class="iconfont icon-icon_tianjia"></span>
+          新建主题
+        </div>
+        <div class="menu-item">
+          <span class="iconfont icon-shoucang"></span>
+          收藏的主题
+        </div>
+        <div class="menu-item">
+          <span class="iconfont icon-icon_zhanghao"></span>
+          用户详情
+        </div>
+        <div class="menu-item">
+          <span class="iconfont icon-xiaoxi"></span>
+          我的消息
+        </div>
       </div>
     </div>
   </transition>
@@ -66,6 +78,8 @@ export default {
     align-items: center;
 
     .menu-item {
+      display: flex;
+      align-items: center;
       padding: 13px 0;
       padding-left: 24px;
       width: 90%;
@@ -74,6 +88,10 @@ export default {
       &:hover {
         cursor: pointer;
         background: #e1e1e1;
+      }
+
+      span {
+        margin-right: 20px;
       }
     }
   }
