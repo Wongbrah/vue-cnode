@@ -1,13 +1,15 @@
 <template>
   <transition name="menu">
     <div v-show="isShow" class="menu">
-      <div class="avatar"></div>
-      <ul>
-        <li>新建主题</li>
-        <li>收藏的主题</li>
-        <li>用户详情</li>
-        <li>我的消息</li>
-      </ul>
+      <div class="avatar">
+        <img src="@/assets/logo.png" alt="" width="100%" height="100%">
+      </div>
+      <div class="menu-content">
+        <div class="menu-item">新建主题</div>
+        <div class="menu-item">收藏的主题</div>
+        <div class="menu-item">用户详情</div>
+        <div class="menu-item">我的消息</div>
+      </div>
     </div>
   </transition>
 </template>
@@ -35,9 +37,46 @@ export default {
   bottom: 0;
   left: 0;
   width: 256px;
-  background: #e1e1e1;
+  background: #f6f6f6;
   right: 0;
   z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .avatar {
+    border: 3px solid #80bd01;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    background: #333;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  .menu-content {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .menu-item {
+      padding: 13px 0;
+      padding-left: 24px;
+      width: 90%;
+      // border: 1px solid #333;
+      color: #333;
+      &:hover {
+        cursor: pointer;
+        background: #e1e1e1;
+      }
+    }
+  }
 }
 
 .menu-enter, .menu-leave-active {

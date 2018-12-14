@@ -28,6 +28,9 @@ export default {
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .mask-enter-active, .mask-leave-active {

@@ -35,8 +35,8 @@ export default {
 
 <style lang="scss" scoped>
 .scrolltotop {
-  border: 2px #80bd01 solid;
-  background: #fff;
+  border: 1px #80bd01 solid;
+  background: #333;
   border-radius: 50%;
   width: 25px;
   height: 25px;
@@ -45,6 +45,7 @@ export default {
   right: 40px;
   bottom: 50px;
   z-index: 1000;
+  color: #e1e1e1;
 
   &:hover {
     cursor: pointer;
