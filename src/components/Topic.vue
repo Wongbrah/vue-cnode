@@ -71,10 +71,15 @@ a {
 
 .topic {
   display: flex;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #e1e1e1;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
+  // cursor: pointer;
+
+  &:hover {
+    background: #f6f6f6;
+  }
 
   .avatar {
     margin: 0 2px;
