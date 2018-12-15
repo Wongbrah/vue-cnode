@@ -61,6 +61,7 @@ export default {
 
   .logo {
     margin: 15px 0px;
+    user-select: none;
 
     &:hover {
       cursor: pointer;

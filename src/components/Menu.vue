@@ -5,7 +5,7 @@
         <img src="@/assets/logo.png" alt="" width="100%" height="100%">
       </div>
       <div class="menu-content">
-        <div class="menu-item">
+        <div @click="commit('Login')" class="menu-item">
           <span class="iconfont icon-icon_tianjia"></span>
           新建主题
         </div>
@@ -37,6 +37,10 @@ export default {
     closeMenu () {
       console.log('onblur')
       this.$store.commit('switchMenu')
+    },
+    commit (event) {
+      this.$store.commit('switchMenu')
+      this.$store.commit(`switch${event}`)
     }
   }
 }
@@ -63,6 +67,7 @@ export default {
     width: 130px;
     border-radius: 50%;
     background: #333;
+    user-select:none;
 
     img {
       border-radius: 50%;
@@ -83,11 +88,12 @@ export default {
       padding: 13px 0;
       padding-left: 24px;
       width: 90%;
-      // border: 1px solid #333;
+      user-select:none;
       color: #333;
       &:hover {
         cursor: pointer;
         background: #e1e1e1;
+        // color: #80bd01;
       }
 
       span {

@@ -7,15 +7,21 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    isShowMenu: false
+    isShowMenu: false,
+    isShowLogin: false
   },
   mutations: {
     closeAll (state) {
       state.isShowMenu = false
+      state.isShowLogin = false
     },
     switchMenu (state) {
       console.log('switchMenu')
       state.isShowMenu = !state.isShowMenu
+    },
+    switchLogin (state) {
+      console.log('switchLogin')
+      state.isShowLogin = !state.isShowLogin
     }
   },
   actions: {

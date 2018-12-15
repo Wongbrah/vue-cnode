@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Masks></Masks>
+    <Login></Login>
     <Topbar :isShow="isShow"></Topbar>
     <Menu></Menu>
     <div class="content">
@@ -16,12 +17,14 @@
 import Masks from '@/components/Mask'
 import Topbar from '@/components/Topbar'
 import Menu from '@/components/Menu'
+import Login from '@/components/Login'
 
 export default {
   components: {
     Masks,
     Topbar,
-    Menu
+    Menu,
+    Login
   },
   name: 'App',
   data () {
