@@ -2,8 +2,9 @@
   <div id="app">
     <Masks></Masks>
     <Login></Login>
-    <Topbar :isShow="isShow"></Topbar>
+    <Topbar></Topbar>
     <Menu></Menu>
+    <TabNav v-show="isShow"></TabNav>
     <div class="content">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"/>
@@ -18,18 +19,20 @@ import Masks from '@/components/Mask'
 import Topbar from '@/components/Topbar'
 import Menu from '@/components/Menu'
 import Login from '@/components/Login'
+import TabNav from '@/components/Nav'
 
 export default {
   components: {
     Masks,
     Topbar,
     Menu,
-    Login
+    Login,
+    TabNav
   },
   name: 'App',
-  data () {
-    return {
-      isShow: true
+  computed: {
+    isShow () {
+      return this.$store.state.isShowNav
     }
   }
 }

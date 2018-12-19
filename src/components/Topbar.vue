@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="topbar" v-show="isShow">
+    <div class="topbar">
       <div class="nav">
         <div class="btn" @click="back">
           <span class="iconfont icon-fanhui"></span>
@@ -18,9 +18,6 @@
 
 <script>
 export default {
-  props: {
-    isShow: Boolean
-  },
   methods: {
     back () {
       console.log('back')

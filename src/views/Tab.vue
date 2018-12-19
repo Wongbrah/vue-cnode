@@ -1,13 +1,5 @@
 <template>
   <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10" ref="tab">
-    <div class="tab">
-      <router-link :to="{path: 'index', query: {tab: 'all'}}" :class="{active: tabNow === 'all'}">全部</router-link>
-      <router-link :to="{path: 'index', query: {tab: 'good'}}" :class="{active: tabNow === 'good'}">精华</router-link>
-      <router-link :to="{path: 'index', query: {tab: 'share'}}" :class="{active: tabNow === 'share'}">分享</router-link>
-      <router-link :to="{path: 'index', query: {tab: 'ask'}}" :class="{active: tabNow === 'ask'}">问答</router-link>
-      <router-link :to="{path: 'index', query: {tab: 'job'}}" :class="{active: tabNow === 'job'}">招聘</router-link>
-      <router-link :to="{path: 'index', query: {tab: 'dev'}}" :class="{active: tabNow === 'dev'}">客户端测试</router-link>
-    </div>
     <topic v-for="(item, index) in topics" :key="index" :topic="topics[index]"></topic>
     <scroll-to-top></scroll-to-top>
   </div>
@@ -28,11 +20,6 @@ export default {
       topics: [],
       busy: true,
       page: 1
-    }
-  },
-  computed: {
-    tabNow () {
-      return this.$route.query.tab || 'all'
     }
   },
   methods: {
@@ -67,32 +54,12 @@ export default {
     }
   },
   activated () {
+    this.$store.commit('switchNav')
     this.busy = false
   },
   deactivated () {
+    this.$store.commit('switchNav')
     this.busy = true
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.tab {
-  display: flex;
-  background: #f6f6f6;
-  text-align: center;
-  padding: 5px;
-
-  a {
-    margin: 0 5px;
-    text-decoration: none;
-    color: #80bd01;
-  }
-
-  .active {
-    background: #80bd01;
-    color: #fff;
-    border-radius: 10%;
-    padding: 0 3px;
-  }
-}
-</style>
