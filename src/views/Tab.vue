@@ -1,5 +1,5 @@
 <template>
-  <div ref="tab">
+  <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10" ref="tab">
     <div class="tab">
       <router-link :to="{path: 'index', query: {tab: 'all'}}" :class="{active: tabNow === 'all'}">全部</router-link>
       <router-link :to="{path: 'index', query: {tab: 'good'}}" :class="{active: tabNow === 'good'}">精华</router-link>
@@ -18,8 +18,6 @@ import Topic from '@/components/Topic'
 import ScrollToTop from '@/components/ScrollToTop'
 import { getTopics } from '@/request/api'
 
-// const urlPrefix = 'https://cnodejs.org/api/v1'
-
 export default {
   components: {
     Topic,
@@ -27,48 +25,52 @@ export default {
   },
   data () {
     return {
-      topics: []
-    }
-  },
-  async mounted () {
-    // 获取url参数
-    // this.getTopics(this.$route.query.tab)
-    const res = await getTopics(this.$route.query.tab || 'all')
-    this.topics = res.data
-  },
-  methods: {
-    // 获取文章列表
-    // getTopics (tab = 'all') {
-    //   this.$http.get(urlPrefix + `/topics?tab=${tab}`)
-    //     .then((res) => {
-    //       // console.log(res.data)
-    //       if (res.data.success) {
-    //         this.topics = res.data.data
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // },
-    scrollToTop () {
-      this.$refs.tab.parentNode.scrollTop = 0
-    }
-  },
-  watch: {
-    // 监听路由变化，获取不同类型文章列表
-    async '$route' () {
-      if (this.$route.path === '/index') {
-        // this.getTopics(this.$route.query.tab)
-        const res = await getTopics(this.$route.query.tab || 'all')
-        this.topics = res.data
-        this.scrollToTop()
-      }
+      topics: [],
+      busy: true,
+      page: 1
     }
   },
   computed: {
     tabNow () {
       return this.$route.query.tab || 'all'
     }
+  },
+  methods: {
+    scrollToTop () {
+      this.$refs.tab.parentNode.scrollTop = 0
+    },
+    async loadMore () {
+      console.log('loaddddddddddddddddd moreeeeeeeeeee')
+      this.busy = true
+      const res = await getTopics({
+        tab: this.$route.query.tab || 'all',
+        page: this.page
+      })
+      this.topics.push(...res.data)
+      this.page++
+      this.busy = false
+    }
+  },
+  watch: {
+    // 监听路由变化，获取不同类型文章列表
+    async '$route' () {
+      if (this.$route.path === '/index') {
+        this.page = 1
+        const res = await getTopics({
+          tab: this.$route.query.tab || 'all',
+          page: this.page
+        })
+        this.topics = res.data
+        this.page++
+        this.scrollToTop()
+      }
+    }
+  },
+  activated () {
+    this.busy = false
+  },
+  deactivated () {
+    this.busy = true
   }
 }
 </script>

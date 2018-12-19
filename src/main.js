@@ -6,6 +6,9 @@ import router from './router'
 import store from '@/store'
 import axios from 'axios'
 import './assets/icon/iconfont.css'
+import infiniteScroll from 'vue-infinite-scroll'
+
+Vue.use(infiniteScroll)
 
 Vue.prototype.$http = axios
 

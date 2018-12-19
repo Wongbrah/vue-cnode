@@ -3,12 +3,10 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-// const urlPrefix = `https://cnodejs.org/api/v1`
-
 const store = new Vuex.Store({
   state: {
-    isShowMenu: false,
-    isShowLogin: false
+    isShowMenu: false, // 是否显示侧边栏
+    isShowLogin: false // 是否显示登录框
   },
   mutations: {
     closeAll (state) {
@@ -23,9 +21,6 @@ const store = new Vuex.Store({
       console.log('switchLogin')
       state.isShowLogin = !state.isShowLogin
     }
-  },
-  actions: {
-
   }
 })
 

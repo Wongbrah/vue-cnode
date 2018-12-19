@@ -1,31 +1,31 @@
 <template>
-  <div class="background">
-    <!-- 文章标题和内容 -->
-    <div class="topic">
-      <div class="topic_title">{{topic.title}}</div>
-      <div class="topic_content" v-html="topic.content"></div>
-    </div>
-    <div class="division">{{topic.reply_count}} 回复</div>
-    <!-- 文章回复 -->
-    <div class="reply" v-for="(item, index) in topic.replies" :key="index" ref="replys">
-      <div class="reply_title">
-        <div class="avatar">
-          <router-link :to="{path: `/user/${item.author.loginname}`}">
-            <img :src="item.author.avatar_url" alt="" width="30px" height="30px">
-          </router-link>
-        </div>
-        <div class="username">{{item.author.loginname}}</div>
-        <div class="reply_time">{{index + 1}}楼·{{item.create_at | getTime}}</div>
-        <div class="author" v-if="item.author.loginname == topic.author.loginname">作者</div>
-        <div class="blank"></div>
-        <div class="likes">
-          <span class="iconfont icon-zan"></span>
-          {{item.ups.length}}
-        </div>
+    <div class="background">
+      <!-- 文章标题和内容 -->
+      <div class="topic">
+        <div class="topic_title">{{topic.title}}</div>
+        <div class="topic_content" v-html="topic.content"></div>
       </div>
-      <div class="reply_content" v-html="item.content"></div>
+      <div class="division">{{topic.reply_count}} 回复</div>
+      <!-- 文章回复 -->
+      <div class="reply" v-for="(item, index) in topic.replies" :key="index" ref="replys">
+        <div class="reply_title">
+          <div class="avatar">
+            <router-link :to="{path: `/user/${item.author.loginname}`}">
+              <img :src="item.author.avatar_url" alt="" width="30px" height="30px">
+            </router-link>
+          </div>
+          <div class="username">{{item.author.loginname}}</div>
+          <div class="reply_time">{{index + 1}}楼·{{item.create_at | getTime}}</div>
+          <div class="author" v-if="item.author.loginname == topic.author.loginname">作者</div>
+          <div class="blank"></div>
+          <div class="likes">
+            <span class="iconfont icon-zan"></span>
+            {{item.ups.length}}
+          </div>
+        </div>
+        <div class="reply_content" v-html="item.content"></div>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
