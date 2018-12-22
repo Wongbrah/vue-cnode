@@ -2,7 +2,10 @@
     <div class="background">
       <!-- 文章标题和内容 -->
       <div class="topic">
-        <div class="topic_title">{{topic.title}}</div>
+        <div class="topic_title">
+          <loading v-show="isShowLoading"></loading>
+          {{topic.title}}
+        </div>
         <div class="topic_content" v-html="topic.content"></div>
       </div>
       <div class="division">{{topic.reply_count}} 回复</div>
@@ -30,14 +33,23 @@
 
 <script>
 import timeago from '@/utils/timeago'
+import Loading from '@/components/Loading'
 import { getTopicContent } from '@/request/api'
 
 // const urlPrefix = 'https://cnodejs.org/api/v1'
 
 export default {
+  components: {
+    Loading
+  },
   data () {
     return {
       topic: {}
+    }
+  },
+  computed: {
+    isShowLoading () {
+      return this.$store.state.isShowLoading
     }
   },
   methods: {
@@ -55,8 +67,14 @@ export default {
   },
   async mounted () {
     // this.getTopicContent(this.$route.params.id)
+    this.$store.commit('setLoading', {
+      switch: true
+    })
     const res = await getTopicContent(this.$route.params.id)
     this.topic = res.data
+    this.$store.commit('setLoading', {
+      switch: false
+    })
   },
   filters: {
     getTime (time) {

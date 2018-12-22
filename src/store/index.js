@@ -7,7 +7,8 @@ const store = new Vuex.Store({
   state: {
     isShowMenu: false, // 是否显示侧边栏
     isShowLogin: false, // 是否显示登录框
-    isShowNav: false // 是否显示分类导航栏
+    isShowNav: false, // 是否显示分类导航栏
+    isShowLoading: false // 是否显示加载动画
   },
   mutations: {
     closeAll (state) {
@@ -25,6 +26,9 @@ const store = new Vuex.Store({
     switchNav (state) {
       console.log('switchNav')
       state.isShowNav = !state.isShowNav
+    },
+    setLoading (state, payload) {
+      state.isShowLoading = payload.switch
     }
   }
 })
