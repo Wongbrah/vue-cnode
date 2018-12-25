@@ -2,6 +2,7 @@
   <div id="app">
     <Masks></Masks>
     <Login></Login>
+    <post-topic></post-topic>
     <Topbar></Topbar>
     <Menu></Menu>
     <TabNav v-show="isShow"></TabNav>
@@ -20,6 +21,7 @@ import Topbar from '@/components/Topbar'
 import Menu from '@/components/Menu'
 import Login from '@/components/Login'
 import TabNav from '@/components/Nav'
+import PostTopic from '@/components/PostTopic'
 
 export default {
   components: {
@@ -27,7 +29,8 @@ export default {
     Topbar,
     Menu,
     Login,
-    TabNav
+    TabNav,
+    PostTopic
   },
   name: 'App',
   computed: {

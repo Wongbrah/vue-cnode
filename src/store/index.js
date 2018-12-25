@@ -8,7 +8,8 @@ const store = new Vuex.Store({
     isShowMenu: false, // 是否显示侧边栏
     isShowLogin: false, // 是否显示登录框
     isShowNav: false, // 是否显示分类导航栏
-    isShowLoading: false // 是否显示加载动画
+    isShowLoading: false, // 是否显示加载动画
+    isShowPostTopic: false // 是否显示新建主题
   },
   mutations: {
     closeAll (state) {
@@ -29,6 +30,9 @@ const store = new Vuex.Store({
     },
     setLoading (state, payload) {
       state.isShowLoading = payload.switch
+    },
+    switchPostTopic (state) {
+      state.isShowPostTopic = !state.isShowPostTopic
     }
   }
 })

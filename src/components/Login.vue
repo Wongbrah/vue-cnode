@@ -37,9 +37,9 @@ export default {
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  z-index: 99;
 
   .login-box {
-    border: 1px solid #80bd01;
     border-radius: 5%;
     width: 300px;
     height: 300px;

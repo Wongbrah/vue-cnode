@@ -5,11 +5,11 @@
         <img src="@/assets/logo.png" alt="" width="100%" height="100%">
       </div>
       <div class="menu-content">
-        <div @click="commit('Login')" class="menu-item">
+        <div @click="commit('PostTopic')" class="menu-item">
           <span class="iconfont icon-icon_tianjia"></span>
           新建主题
         </div>
-        <div class="menu-item">
+        <div @click="commit('Login')" class="menu-item">
           <span class="iconfont icon-shoucang"></span>
           收藏的主题
         </div>
