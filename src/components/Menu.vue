@@ -39,8 +39,13 @@ export default {
       this.$store.commit('switchMenu')
     },
     commit (event) {
-      this.$store.commit('switchMenu')
-      this.$store.commit(`switch${event}`)
+      if (this.$store.state.Auth) {
+        this.$store.commit('switchMenu')
+        this.$store.commit(`switch${event}`)
+      } else {
+        this.$store.commit('switchMenu')
+        this.$store.commit(`switchLogin`)
+      }
     }
   }
 }

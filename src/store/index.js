@@ -9,7 +9,8 @@ const store = new Vuex.Store({
     isShowLogin: false, // 是否显示登录框
     isShowNav: false, // 是否显示分类导航栏
     isShowLoading: false, // 是否显示加载动画
-    isShowPostTopic: false // 是否显示新建主题
+    isShowPostTopic: false, // 是否显示新建主题
+    Auth: localStorage.getItem('accessToken') || false // accessToken
   },
   mutations: {
     closeAll (state) {
