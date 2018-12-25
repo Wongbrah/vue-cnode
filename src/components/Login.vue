@@ -55,10 +55,12 @@ export default {
           return false
         })
         if (res.success) {
+          localStorage.setItem('access_token', this.token)
           localStorage.setItem('loginname', res.loginname)
           localStorage.setItem('avatar_url', res.avatar_url)
           localStorage.setItem('id', res.id)
           console.log('登录成功！')
+          location.reload()
         }
         return true
       }

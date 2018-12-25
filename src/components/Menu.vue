@@ -2,8 +2,9 @@
   <transition name="menu">
     <div v-show="isShow" class="menu">
       <div class="avatar">
-        <img src="@/assets/logo.png" alt="" width="100%" height="100%">
+        <img :src='avatarURL' alt="" width="100%" height="100%">
       </div>
+      <div class="login-name">{{loginName}}</div>
       <div class="menu-content">
         <div @click="commit('PostTopic')" class="menu-item">
           <span class="iconfont icon-icon_tianjia"></span>
@@ -21,6 +22,15 @@
           <span class="iconfont icon-xiaoxi"></span>
           我的消息
         </div>
+        <div class="line"></div>
+        <div class="menu-item">
+          <span class="iconfont icon-xiaoxi"></span>
+          关于作者
+        </div>
+        <div v-show="isLogin" @click="logout" class="menu-item">
+          <span class="iconfont icon-xiaoxi"></span>
+          退出登录
+        </div>
       </div>
     </div>
   </transition>
@@ -31,6 +41,15 @@ export default {
   computed: {
     isShow () {
       return this.$store.state.isShowMenu
+    },
+    avatarURL () {
+      return this.$store.state.avatarURL
+    },
+    loginName () {
+      return this.$store.state.loginName
+    },
+    isLogin () {
+      return this.$store.state.Auth
     }
   },
   methods: {
@@ -46,6 +65,13 @@ export default {
         this.$store.commit('switchMenu')
         this.$store.commit(`switchLogin`)
       }
+    },
+    logout () {
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('loginname')
+      localStorage.removeItem('avatar_url')
+      localStorage.removeItem('id')
+      location.reload()
     }
   }
 }
@@ -79,6 +105,11 @@ export default {
     }
   }
 
+  .login-name {
+    margin-top: 20px;
+    color: #333;
+  }
+
   .menu-content {
     height: 60%;
     width: 100%;
@@ -104,6 +135,11 @@ export default {
       span {
         margin-right: 20px;
       }
+    }
+
+    .line {
+      border: 1px solid #e1e1e1;
+      width: 100%;
     }
   }
 }

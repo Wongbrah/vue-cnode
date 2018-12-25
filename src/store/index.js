@@ -10,7 +10,10 @@ const store = new Vuex.Store({
     isShowNav: false, // 是否显示分类导航栏
     isShowLoading: false, // 是否显示加载动画
     isShowPostTopic: false, // 是否显示新建主题
-    Auth: localStorage.getItem('accessToken') || false // accessToken
+    Auth: localStorage.getItem('access_token') || false, // accessToken
+    avatarURL: localStorage.getItem('avatar_url') || 'http://www.qq22.com.cn/uploads/allimg/c170120/14TW10061440-22J4.jpg', // 头像地址
+    loginName: localStorage.getItem('loginname') || '游客', // 用户名
+    userID: localStorage.getItem('id') || '' // 用户ID
   },
   mutations: {
     closeAll (state) {
