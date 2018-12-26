@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     isShowPostTopic: false, // 是否显示新建主题
     isShowCollect: false, // 是否显示用户收藏
     isShowMessage: false, // 是否显示用户消息
+    isShowAuthor: false, // 是否显示关于作者
     Auth: localStorage.getItem('access_token') || false, // accessToken
     avatarURL: localStorage.getItem('avatar_url') || 'http://www.qq22.com.cn/uploads/allimg/c170120/14TW10061440-22J4.jpg', // 头像地址
     loginName: localStorage.getItem('loginname') || '游客，点击头像登录', // 用户名
@@ -46,6 +47,9 @@ const store = new Vuex.Store({
     },
     switchMessage (state) {
       state.isShowMessage = !state.isShowMessage
+    },
+    switchAuthor (state) {
+      state.isShowAuthor = !state.isShowAuthor
     },
     setUnreadMsg (state, payload) {
       state.unreadMsg = payload.count

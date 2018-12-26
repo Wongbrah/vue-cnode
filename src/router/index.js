@@ -5,7 +5,10 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
+  //
+  // 基础路径，打包时取消注释
+  // base: '/vue-cnode/',
   routes: [
     {
       path: '/index',

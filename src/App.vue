@@ -5,6 +5,7 @@
     <post-topic></post-topic>
     <collect></collect>
     <message></message>
+    <author></author>
     <Topbar></Topbar>
     <Menu></Menu>
     <TabNav v-show="isShow"></TabNav>
@@ -26,6 +27,7 @@ import TabNav from '@/components/Nav'
 import PostTopic from '@/components/PostTopic'
 import Collect from '@/components/Collect'
 import Message from '@/components/Message'
+import Author from '@/components/Author'
 
 export default {
   components: {
@@ -36,7 +38,8 @@ export default {
     TabNav,
     PostTopic,
     Collect,
-    Message
+    Message,
+    Author
   },
   name: 'App',
   computed: {

@@ -24,9 +24,9 @@
           <span v-show="unreadMsg" class="unread-msg">{{unreadMsg}}</span>
         </div>
         <div class="line"></div>
-        <div class="menu-item">
+        <div @click="author" class="menu-item">
           <span class="iconfont icon-xiaolian"></span>
-          关于作者
+          关于
         </div>
         <div v-show="isLogin" @click="logout" class="menu-item">
           <span class="iconfont icon-guanbi"></span>
@@ -107,6 +107,10 @@ export default {
       localStorage.removeItem('avatar_url')
       localStorage.removeItem('id')
       location.reload()
+    },
+    author () {
+      this.$store.commit('switchMenu')
+      this.$store.commit(`switchAuthor`)
     }
   }
 }
