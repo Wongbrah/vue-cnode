@@ -6,8 +6,8 @@
           <span>登录</span>
         </div>
         <div class="form">
-          <span v-show="blankErr" class="err">accessToken 不能为空</span>
-          <span v-show="tokenErr" class="err">登陆失败！您输入的 accessToken 不正确</span>
+          <span v-show="blankErr" class="err iconfont icon-jinggao"> accessToken 不能为空</span>
+          <span v-show="tokenErr" class="err iconfont icon-jinggao"> 登陆失败！您输入的 accessToken 不正确</span>
           <div class="row">
             <input v-model="token" type="text" name="token" placeholder="请输入您的 accessToken">
           </div>

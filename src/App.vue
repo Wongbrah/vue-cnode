@@ -3,6 +3,7 @@
     <Masks></Masks>
     <Login></Login>
     <post-topic></post-topic>
+    <collect></collect>
     <Topbar></Topbar>
     <Menu></Menu>
     <TabNav v-show="isShow"></TabNav>
@@ -22,6 +23,7 @@ import Menu from '@/components/Menu'
 import Login from '@/components/Login'
 import TabNav from '@/components/Nav'
 import PostTopic from '@/components/PostTopic'
+import Collect from '@/components/Collect'
 
 export default {
   components: {
@@ -30,7 +32,8 @@ export default {
     Menu,
     Login,
     TabNav,
-    PostTopic
+    PostTopic,
+    Collect
   },
   name: 'App',
   computed: {

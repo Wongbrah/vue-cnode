@@ -10,11 +10,11 @@
           <span class="iconfont icon-icon_tianjia"></span>
           新建主题
         </div>
-        <div @click="commit('Login')" class="menu-item">
+        <div @click="commit('Collect')" class="menu-item">
           <span class="iconfont icon-shoucang"></span>
           收藏的主题
         </div>
-        <div class="menu-item">
+        <div @click="route('/user')" class="menu-item">
           <span class="iconfont icon-icon_zhanghao"></span>
           用户详情
         </div>
@@ -24,11 +24,11 @@
         </div>
         <div class="line"></div>
         <div class="menu-item">
-          <span class="iconfont icon-xiaoxi"></span>
+          <span class="iconfont icon-xiaolian"></span>
           关于作者
         </div>
         <div v-show="isLogin" @click="logout" class="menu-item">
-          <span class="iconfont icon-xiaoxi"></span>
+          <span class="iconfont icon-guanbi"></span>
           退出登录
         </div>
       </div>
@@ -61,6 +61,15 @@ export default {
       if (this.$store.state.Auth) {
         this.$store.commit('switchMenu')
         this.$store.commit(`switch${event}`)
+      } else {
+        this.$store.commit('switchMenu')
+        this.$store.commit(`switchLogin`)
+      }
+    },
+    route (to) {
+      if (this.$store.state.Auth) {
+        this.$store.commit('switchMenu')
+        this.$router.push(`${to}/${this.$store.state.loginName}`)
       } else {
         this.$store.commit('switchMenu')
         this.$store.commit(`switchLogin`)
@@ -139,7 +148,7 @@ export default {
 
     .line {
       border: 1px solid #e1e1e1;
-      width: 100%;
+      width: 99%;
     }
   }
 }

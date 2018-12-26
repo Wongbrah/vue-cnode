@@ -28,19 +28,20 @@
         </div>
         <div class="reply_content" v-html="item.content"></div>
       </div>
+      <scroll-to-top></scroll-to-top>
     </div>
 </template>
 
 <script>
 import timeago from '@/utils/timeago'
 import Loading from '@/components/Loading'
+import ScrollToTop from '@/components/ScrollToTop'
 import { getTopicContent } from '@/request/api'
-
-// const urlPrefix = 'https://cnodejs.org/api/v1'
 
 export default {
   components: {
-    Loading
+    Loading,
+    ScrollToTop
   },
   data () {
     return {
@@ -53,20 +54,11 @@ export default {
     }
   },
   methods: {
-    // getTopicContent (id) {
-    //   this.$http.get(urlPrefix + `/topic/${id}`)
-    //     .then((res) => {
-    //       if (res.data.success) {
-    //         this.topic = res.data.data
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // }
+    scrollToTop () {
+      this.$refs.tab.parentNode.scrollTop = 0
+    }
   },
   async mounted () {
-    // this.getTopicContent(this.$route.params.id)
     this.$store.commit('setLoading', {
       switch: true
     })
@@ -79,6 +71,20 @@ export default {
   filters: {
     getTime (time) {
       return timeago(time)
+    }
+  },
+  watch: {
+    // 监听路由变化
+    async '$route' () {
+      this.topics = {}
+      this.$store.commit('setLoading', {
+        switch: true
+      })
+      const res = await getTopicContent(this.$route.params.id)
+      this.topic = res.data
+      this.$store.commit('setLoading', {
+        switch: false
+      })
     }
   }
 }

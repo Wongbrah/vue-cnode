@@ -11,3 +11,6 @@ export const getUserInfo = loginname => get(`/user/${loginname}`)
 
 // 登录
 export const login = payload => post('/accesstoken', payload)
+
+// 用户所收藏的主题
+export const getCollection = loginname => get(`/topic_collect/${loginname}`)
