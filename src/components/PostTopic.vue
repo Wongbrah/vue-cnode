@@ -11,7 +11,7 @@
           method="post"
         >
           <div class="form">
-            <span v-show="errors[0]" class="err">请选择一个分类</span>
+            <span v-show="errors[0]" class="err iconfont icon-jinggao"> 请选择一个分类</span>
             <div class="row">
               <span>选择板块：</span>
               <select v-model="tab" name="tab" id="tab-value">
@@ -22,12 +22,12 @@
                   <option value="dev">客户端测试</option>
               </select>
             </div>
-            <span v-show="errors[1]" class="err">标题不能为空</span>
-            <span v-show="errors[2]" class="err">标题字数 10 字以上</span>
+            <span v-show="errors[1]" class="err iconfont icon-jinggao"> 标题不能为空</span>
+            <span v-show="errors[2]" class="err iconfont icon-jinggao"> 标题字数 10 字以上</span>
             <div class="row">
               <input v-model="title" type="text" name="title" placeholder="标题字数 10 字以上">
             </div>
-            <span v-show="errors[3]" class="err">内容不能为空</span>
+            <span v-show="errors[3]" class="err iconfont icon-jinggao"> 内容不能为空</span>
             <div class="row">
               <textarea v-model="content" name="content" id="" cols="30" rows="10" placeholder="内容"></textarea>
             </div>

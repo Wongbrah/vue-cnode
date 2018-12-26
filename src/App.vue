@@ -4,6 +4,7 @@
     <Login></Login>
     <post-topic></post-topic>
     <collect></collect>
+    <message></message>
     <Topbar></Topbar>
     <Menu></Menu>
     <TabNav v-show="isShow"></TabNav>
@@ -24,6 +25,7 @@ import Login from '@/components/Login'
 import TabNav from '@/components/Nav'
 import PostTopic from '@/components/PostTopic'
 import Collect from '@/components/Collect'
+import Message from '@/components/Message'
 
 export default {
   components: {
@@ -33,7 +35,8 @@ export default {
     Login,
     TabNav,
     PostTopic,
-    Collect
+    Collect,
+    Message
   },
   name: 'App',
   computed: {

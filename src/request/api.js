@@ -14,3 +14,9 @@ export const login = payload => post('/accesstoken', payload)
 
 // 用户所收藏的主题
 export const getCollection = loginname => get(`/topic_collect/${loginname}`)
+
+// 获取用户消息
+export const getMessages = token => get(`/messages?accesstoken=${token}`)
+
+// 获取用户未读消息数
+export const getUnreadMessagesCount = token => get(`/message/count?accesstoken=${token}`)

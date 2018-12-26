@@ -11,10 +11,12 @@ const store = new Vuex.Store({
     isShowLoading: false, // 是否显示加载动画
     isShowPostTopic: false, // 是否显示新建主题
     isShowCollect: false, // 是否显示用户收藏
+    isShowMessage: false, // 是否显示用户消息
     Auth: localStorage.getItem('access_token') || false, // accessToken
     avatarURL: localStorage.getItem('avatar_url') || 'http://www.qq22.com.cn/uploads/allimg/c170120/14TW10061440-22J4.jpg', // 头像地址
-    loginName: localStorage.getItem('loginname') || '游客', // 用户名
-    userID: localStorage.getItem('id') || '' // 用户ID
+    loginName: localStorage.getItem('loginname') || '游客，点击头像登录', // 用户名
+    userID: localStorage.getItem('id') || '', // 用户ID
+    unreadMsg: 0 // 用户未读消息数
   },
   mutations: {
     closeAll (state) {
@@ -41,6 +43,12 @@ const store = new Vuex.Store({
     },
     switchCollect (state) {
       state.isShowCollect = !state.isShowCollect
+    },
+    switchMessage (state) {
+      state.isShowMessage = !state.isShowMessage
+    },
+    setUnreadMsg (state, payload) {
+      state.unreadMsg = payload.count
     }
   }
 })

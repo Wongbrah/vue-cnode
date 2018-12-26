@@ -1,7 +1,7 @@
 <template>
   <transition name="menu">
     <div v-show="isShow" class="menu">
-      <div class="avatar">
+      <div @click="login" class="avatar">
         <img :src='avatarURL' alt="" width="100%" height="100%">
       </div>
       <div class="login-name">{{loginName}}</div>
@@ -18,9 +18,10 @@
           <span class="iconfont icon-icon_zhanghao"></span>
           用户详情
         </div>
-        <div class="menu-item">
+        <div @click="commit('Message')" class="menu-item">
           <span class="iconfont icon-xiaoxi"></span>
           我的消息
+          <span v-show="unreadMsg" class="unread-msg">{{unreadMsg}}</span>
         </div>
         <div class="line"></div>
         <div class="menu-item">
@@ -37,6 +38,8 @@
 </template>
 
 <script>
+import { getUnreadMessagesCount } from '@/request/api'
+
 export default {
   computed: {
     isShow () {
@@ -50,6 +53,20 @@ export default {
     },
     isLogin () {
       return this.$store.state.Auth
+    },
+    unreadMsg () {
+      return this.$store.state.unreadMsg
+    },
+    Auth () {
+      return this.$store.state.Auth
+    }
+  },
+  async mounted () {
+    if (this.Auth) {
+      const res = await getUnreadMessagesCount(this.Auth)
+      this.$store.commit('setUnreadMsg', {
+        count: res.data
+      })
     }
   },
   methods: {
@@ -70,6 +87,15 @@ export default {
       if (this.$store.state.Auth) {
         this.$store.commit('switchMenu')
         this.$router.push(`${to}/${this.$store.state.loginName}`)
+      } else {
+        this.$store.commit('switchMenu')
+        this.$store.commit(`switchLogin`)
+      }
+    },
+    login () {
+      if (this.$store.state.Auth) {
+        this.$store.commit('switchMenu')
+        this.$router.push(`/user/${this.$store.state.loginName}`)
       } else {
         this.$store.commit('switchMenu')
         this.$store.commit(`switchLogin`)
@@ -108,6 +134,7 @@ export default {
     border-radius: 50%;
     background: #333;
     user-select:none;
+    cursor: pointer;
 
     img {
       border-radius: 50%;
@@ -139,6 +166,17 @@ export default {
         cursor: pointer;
         background: #e1e1e1;
         // color: #80bd01;
+      }
+
+      .unread-msg {
+        margin-left: 20px;
+        color: #333;
+        font-size: 10px;
+        border: 1px solid #80bd01;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        text-align: center;
       }
 
       span {
