@@ -33,6 +33,9 @@ export default {
     },
     loginName () {
       return this.$store.state.loginName
+    },
+    Auth () {
+      return this.$store.state.Auth
     }
   },
   methods: {
@@ -41,8 +44,10 @@ export default {
     }
   },
   async mounted () {
-    const res = await getCollection(this.loginName)
-    this.topics = res.data
+    if (this.Auth) {
+      const res = await getCollection(this.loginName)
+      this.topics = res.data
+    }
   }
 }
 </script>

@@ -51,7 +51,7 @@ export default {
           accesstoken: this.token
         }).catch(err => {
           this.tokenErr = true
-          // console.log('登录失败！')
+          console.log(err)
           return false
         })
         if (res.success) {

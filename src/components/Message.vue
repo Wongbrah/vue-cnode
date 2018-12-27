@@ -49,8 +49,10 @@ export default {
     }
   },
   async mounted () {
-    const res = await getMessages(this.Auth)
-    ;[this.unreadMsg, this.readMsg] = [res.data.has_read_messages, res.data.hasnot_read_messages]
+    if (this.Auth) {
+      const res = await getMessages(this.Auth)
+      ;[this.unreadMsg, this.readMsg] = [res.data.has_read_messages, res.data.hasnot_read_messages]
+    }
   }
 }
 </script>

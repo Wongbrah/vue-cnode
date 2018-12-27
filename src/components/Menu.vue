@@ -74,7 +74,7 @@ export default {
       this.$store.commit('switchMenu')
     },
     commit (event) {
-      if (this.$store.state.Auth) {
+      if (this.Auth) {
         this.$store.commit('switchMenu')
         this.$store.commit(`switch${event}`)
       } else {
@@ -83,7 +83,7 @@ export default {
       }
     },
     route (to) {
-      if (this.$store.state.Auth) {
+      if (this.Auth) {
         this.$store.commit('switchMenu')
         this.$router.push(`${to}/${this.$store.state.loginName}`)
       } else {
