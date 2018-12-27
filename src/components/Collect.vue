@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     close () {
-      console.log('closeCollect')
       this.$store.commit('switchCollect')
     }
   },
@@ -66,9 +65,19 @@ export default {
     display: flex;
     flex-direction: column;
     cursor: auto;
-    max-width: 50%;
-    width: 50%;
-    max-height: 70%;
+    // max-width: 50%;
+    // width: 50%;
+    // max-height: 70%;
+
+    @media (max-width: 767px) {
+      max-width: 300px;
+      max-height: 50%;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 400px;
+      max-height: 70%;
+    }
 
     .header {
       padding: 10px;

@@ -51,7 +51,7 @@ export default {
           accesstoken: this.token
         }).catch(err => {
           this.tokenErr = true
-          console.log('登录失败！')
+          // console.log('登录失败！')
           return false
         })
         if (res.success) {
@@ -59,7 +59,7 @@ export default {
           localStorage.setItem('loginname', res.loginname)
           localStorage.setItem('avatar_url', res.avatar_url)
           localStorage.setItem('id', res.id)
-          console.log('登录成功！')
+          // console.log('登录成功！')
           location.reload()
         }
         return true
@@ -91,7 +91,14 @@ export default {
     display: flex;
     flex-direction: column;
     cursor: auto;
-    max-width: 50%;
+
+    @media (max-width: 767px) {
+      max-width: 300px;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 400px;
+    }
 
     .header {
       padding: 10px;

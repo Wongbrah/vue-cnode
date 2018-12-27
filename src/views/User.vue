@@ -39,8 +39,6 @@ import Topic from '@/components/Topic'
 import ScrollToTop from '@/components/ScrollToTop'
 import { getUserInfo } from '@/request/api'
 
-// const urlPrefix = 'https://cnodejs.org/api/v1'
-
 export default {
   components: {
     Topic,
@@ -55,24 +53,11 @@ export default {
     }
   },
   methods: {
-    // getUserInfo (loginname) {
-    //   this.$http.get(urlPrefix + `/user/${loginname}`)
-    //     .then((res) => {
-    //       if (res.data.success) {
-    //         this.user = res.data.data
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // }
     scrollToTop () {
       this.$refs.page.parentNode.scrollTop = 0
     }
   },
   async mounted () {
-    // console.log('user view mounted')
-    // this.getUserInfo(this.$route.params.loginname)
     const res = await getUserInfo(this.$route.params.loginname)
     this.user = res.data
   },

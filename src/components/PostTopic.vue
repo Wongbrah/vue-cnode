@@ -105,6 +105,14 @@ export default {
     flex-direction: column;
     cursor: auto;
 
+    @media (max-width: 767px) {
+      max-width: 300px;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 400px;
+    }
+
     .header {
       padding: 10px;
       background-color: #f6f6f6;
@@ -141,11 +149,12 @@ export default {
 
         span {
           border: none;
+          width: 50%;
         }
 
         select {
           cursor: pointer;
-          width: 220px;
+          width: 100%;
         }
 
         input {

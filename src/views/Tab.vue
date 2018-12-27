@@ -35,7 +35,6 @@ export default {
       this.$refs.tab.parentNode.scrollTop = 0
     },
     async loadMore () {
-      console.log('loaddddddddddddddddd moreeeeeeeeeee')
       this.$store.commit('setLoading', {
         switch: true
       })

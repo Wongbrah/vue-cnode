@@ -20,14 +20,14 @@
 export default {
   methods: {
     back () {
-      console.log('back')
+      // console.log('back')
       this.$router.back()
     },
     index () {
       this.$router.push('/index')
     },
     menu () {
-      console.log('menu')
+      // console.log('menu')
       this.$store.commit('switchMenu')
     }
   }

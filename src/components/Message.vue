@@ -45,7 +45,6 @@ export default {
   },
   methods: {
     close () {
-      console.log('closeMessage')
       this.$store.commit('switchMessage')
     }
   },
@@ -74,9 +73,21 @@ export default {
     display: flex;
     flex-direction: column;
     cursor: auto;
-    max-width: 50%;
-    width: 50%;
-    max-height: 70%;
+    // max-width: 50%;
+    // width: 50%;
+    // max-height: 70%;
+
+    @media (max-width: 767px) {
+      width: 300px;
+      max-width: 300px;
+      max-height: 50%;
+    }
+
+    @media (min-width: 768px) {
+      width: 400px;
+      max-width: 400px;
+      max-height: 70%;
+    }
 
     .header {
       padding: 10px;

@@ -25,15 +25,12 @@ const store = new Vuex.Store({
       state.isShowLogin = false
     },
     switchMenu (state) {
-      console.log('switchMenu')
       state.isShowMenu = !state.isShowMenu
     },
     switchLogin (state) {
-      console.log('switchLogin')
       state.isShowLogin = !state.isShowLogin
     },
     switchNav (state) {
-      console.log('switchNav')
       state.isShowNav = !state.isShowNav
     },
     setLoading (state, payload) {

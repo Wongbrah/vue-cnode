@@ -71,7 +71,6 @@ export default {
   },
   methods: {
     closeMenu () {
-      console.log('onblur')
       this.$store.commit('switchMenu')
     },
     commit (event) {

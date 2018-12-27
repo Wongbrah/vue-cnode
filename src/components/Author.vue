@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     close () {
-      console.log('closeAuthor')
       this.$store.commit('switchAuthor')
     }
   }
@@ -51,9 +50,14 @@ export default {
     display: flex;
     flex-direction: column;
     cursor: auto;
-    max-width: 50%;
-    width: 50%;
-    max-height: 70%;
+
+    @media (max-width: 767px) {
+      max-width: 300px;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 400px;
+    }
 
     .header {
       padding: 10px;
@@ -73,7 +77,7 @@ export default {
 
       span {
         display: inline-block;
-        margin: 10px 0;
+        padding: 10px;
         text-align: center;
         width: 100%;
       }

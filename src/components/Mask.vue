@@ -13,7 +13,6 @@ export default {
   },
   methods: {
     closeAll () {
-      console.log('onblur')
       this.$store.commit('closeAll')
     }
   }
