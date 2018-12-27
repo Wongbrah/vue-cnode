@@ -125,6 +125,10 @@ export default {
       text-decoration: none;
       word-break:break-all;
     }
+
+    & /deep/ code {
+      white-space: pre-wrap;
+    }
   }
 }
 
@@ -186,7 +190,7 @@ export default {
     }
 
     & /deep/ code {
-      word-break:break-all;
+      white-space: pre-wrap;
     }
   }
 
