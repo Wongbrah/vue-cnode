@@ -6,7 +6,7 @@
           <span>关于</span>
         </div>
         <div class="author-content">
-          <span>作者：<a href="https://github.com/Wongbrah">Wongbrah</a></span>
+          <span><a href="https://github.com/Wongbrah">Wongbrah</a></span>
           <span>这是一个基于CNode社区<a href="https://cnodejs.org/api">API</a>打造的Vue SPA（单页应用）</span>
           <span>技术栈：vue-cli, vue-router, vuex, axios, vue-infinite-scroll</span>
           <span>在线项目展示：<a href="http://wongbrah.top/vue-cnode">http://wongbrah.top/vue-cnode</a></span>

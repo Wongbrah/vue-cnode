@@ -12,7 +12,7 @@
             <input v-model="token" type="text" name="token" placeholder="请输入您的 accessToken">
           </div>
           <div class="row">
-            <span>如何获取 accessToken？ 用户登录后，在设置页面可以看到自己的 accessToken。 建议各移动端应用使用手机扫码的形式登录，验证使用 /accesstoken 接口，登录后长期保存 accessToken。</span>
+            <span>如何获取 accessToken？ 用户<a href="https://cnodejs.org/signin">登录</a>后，在设置页面可以看到自己的 accessToken。 建议各移动端应用使用手机扫码的形式登录，验证使用 /accesstoken 接口，登录后长期保存 accessToken。</span>
           </div>
           <div class="row">
             <button @click="checkForm">登录</button>
@@ -132,6 +132,12 @@ export default {
             border-color: #80bd01;
             box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1);
           }
+        }
+
+        a {
+          color: #08c;
+          text-decoration: none;
+          word-break:break-all;
         }
 
         span {

@@ -5,82 +5,104 @@
         <div class="header">
           <span>发布话题</span>
         </div>
-        <form
-          @submit="checkForm"
-          id="postTopic"
-          method="post"
-        >
-          <div class="form">
-            <span v-show="errors[0]" class="err iconfont icon-jinggao"> 请选择一个分类</span>
-            <div class="row">
-              <span>选择板块：</span>
-              <select v-model="tab" name="tab" id="tab-value">
-                <option value="">请选择</option>
-                  <option value="share" disabled>分享</option>
-                  <option value="ask" disabled>问答</option>
-                  <option value="job" disabled>招聘</option>
-                  <option value="dev">客户端测试</option>
-              </select>
-            </div>
-            <span v-show="errors[1]" class="err iconfont icon-jinggao"> 标题不能为空</span>
-            <span v-show="errors[2]" class="err iconfont icon-jinggao"> 标题字数 10 字以上</span>
-            <div class="row">
-              <input v-model="title" type="text" name="title" placeholder="标题字数 10 字以上">
-            </div>
-            <span v-show="errors[3]" class="err iconfont icon-jinggao"> 内容不能为空</span>
-            <div class="row">
-              <textarea v-model="content" name="content" id="" cols="30" rows="10" placeholder="内容"></textarea>
-            </div>
-            <div class="row">
-              <input type="submit" value="提交">
-            </div>
+        <div class="form">
+          <span v-show="tabErr" class="err iconfont icon-jinggao"> 请选择一个分类</span>
+          <div class="row">
+            <span>选择板块：</span>
+            <select v-model="tab" name="tab" id="tab-value">
+              <option value="">请选择</option>
+                <option value="share" disabled>分享</option>
+                <option value="ask" disabled>问答</option>
+                <option value="job" disabled>招聘</option>
+                <option value="dev">客户端测试</option>
+            </select>
           </div>
-        </form>
+          <span v-show="titleErr" class="err iconfont icon-jinggao"> 标题不能为空</span>
+          <span v-show="titleErr2" class="err iconfont icon-jinggao"> 标题字数 10 字以上</span>
+          <div class="row">
+            <input v-model="title" type="text" name="title" placeholder="标题字数 10 字以上">
+          </div>
+          <span v-show="contentErr" class="err iconfont icon-jinggao"> 内容不能为空</span>
+          <div class="row">
+            <textarea v-model="content" name="content" id="" cols="30" rows="10" placeholder="内容"></textarea>
+          </div>
+          <span v-show="postErr" class="err iconfont icon-jinggao"> 发布失败！</span>
+          <div class="row">
+            <button @click="checkForm">提交</button>
+          </div>
+        </div>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
+import { postTopic } from '@/request/api'
+
 export default {
   data () {
     return {
-      errors: [false, false, false, false],
-      tab: '', // 0
-      title: '', // 1, 2
-      content: '' // 3
+      tab: '', // 分类
+      title: '', // 标题
+      content: '', // 内容
+      tabErr: false, // 请选择一个分类
+      titleErr: false, // 标题不能为空
+      titleErr2: false, // 标题字数 10 字以上
+      contentErr: false, // 内容不能为空
+      postErr: false // 发布失败！
     }
   },
   computed: {
     isShow () {
       return this.$store.state.isShowPostTopic
+    },
+    Auth () {
+      return this.$store.state.Auth
     }
   },
   methods: {
     close () {
       this.$store.commit('switchPostTopic')
     },
-    checkForm (e) {
-      if (this.tab && this.title && this.content) {
-        return true
-      }
-
-      this.errors = [false, false, false, false]
+    async checkForm () {
+      this.tabErr = false
+      this.titleErr = false
+      this.titleErr2 = false
+      this.contentErr = false
 
       if (!this.tab) {
-        this.errors[0] = true
+        this.tabErr = true
       }
       if (!this.title) {
-        this.errors[1] = true
+        this.titleErr = true
       }
-      if (!this.errors[1] && this.title.length < 10) {
-        this.errors[2] = true
+      if (!this.titleErr && this.title.length < 10) {
+        this.titleErr2 = true
       }
       if (!this.content) {
-        this.errors[3] = true
+        this.contentErr = true
       }
 
-      e.preventDefault()
+      if (this.tabErr || this.titleErr || this.titleErr2 || this.contentErr) {
+        return false
+      } else {
+        const res = await postTopic({
+          accesstoken: this.Auth,
+          title: this.title,
+          tab: this.tab,
+          content: this.content
+        }).catch(err => {
+          this.postErr = true
+          console.log(err)
+          return false
+        })
+        if (res.success) {
+          this.$store.commit('switchPostTopic')
+          this.$router.push(`topic/${res.topic_id}`)
+        } else {
+          this.postErr = true
+        }
+      }
     }
   }
 }
@@ -161,7 +183,7 @@ export default {
           width: 100%;
         }
 
-        input[type=submit] {
+        button {
           border: none;
           background: #80bd01;
           color: #fff;
