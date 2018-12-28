@@ -1,6 +1,9 @@
 # vue-cnode
 一个基于CNode社区API打造的 Vue SPA
 
+## API
+https://cnodejs.org/api
+
 ## 在线展示
 http://wongbrah.top/vue-cnode
 
