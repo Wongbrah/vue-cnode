@@ -129,6 +129,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 99;
 
   .avatar {
     border: 3px solid #80bd01;
