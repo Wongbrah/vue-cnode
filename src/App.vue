@@ -65,5 +65,6 @@ body {
   flex: 1;
   /* border: 2px solid green; */
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 </style>
