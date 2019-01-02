@@ -25,3 +25,9 @@ export const login = payload => post('/accesstoken', payload)
 
 // 新建主题
 export const postTopic = payload => post('/topics', payload)
+
+// 收藏主题
+export const collectTopic = payload => post('/topic_collect/collect', payload)
+
+// 取消收藏主题
+export const deCollectTopic = payload => post('/topic_collect/de_collect', payload)

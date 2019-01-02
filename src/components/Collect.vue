@@ -48,6 +48,14 @@ export default {
       const res = await getCollection(this.loginName)
       this.topics = res.data
     }
+  },
+  watch: {
+    async isShow () {
+      if (this.isShow && this.Auth) {
+        const res = await getCollection(this.loginName)
+        this.topics = res.data
+      }
+    }
   }
 }
 </script>

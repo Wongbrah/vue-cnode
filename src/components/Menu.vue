@@ -28,7 +28,7 @@
           <span class="iconfont icon-xiaolian"></span>
           关于
         </div>
-        <div v-show="isLogin" @click="logout" class="menu-item">
+        <div v-show="Auth" @click="logout" class="menu-item">
           <span class="iconfont icon-guanbi"></span>
           退出登录
         </div>
@@ -50,9 +50,6 @@ export default {
     },
     loginName () {
       return this.$store.state.loginName
-    },
-    isLogin () {
-      return this.$store.state.Auth
     },
     unreadMsg () {
       return this.$store.state.unreadMsg
