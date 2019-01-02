@@ -43,12 +43,6 @@ export default {
       this.$store.commit('switchCollect')
     }
   },
-  async mounted () {
-    if (this.Auth) {
-      const res = await getCollection(this.loginName)
-      this.topics = res.data
-    }
-  },
   watch: {
     async isShow () {
       if (this.isShow && this.Auth) {
@@ -83,11 +77,13 @@ export default {
     // max-height: 70%;
 
     @media (max-width: 767px) {
+      min-width: 300px;
       max-width: 300px;
       max-height: 50%;
     }
 
     @media (min-width: 768px) {
+      min-width: 400px;
       max-width: 400px;
       max-height: 70%;
     }

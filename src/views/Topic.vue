@@ -227,6 +227,7 @@ export default {
     .de_collect {
       background: #e5e5e5;
       color: #333;
+      min-width: 6rem;
       &:hover {
         background: #838383;;
         color: #fff;
@@ -244,7 +245,8 @@ export default {
       font-size: 14px;
       letter-spacing: 2px;
       line-height: 2em;
-      min-width: 4em;
+      min-width: 4rem;
+      max-height: 2rem;
       &:hover {
         background-color: #6ba44e;
       }

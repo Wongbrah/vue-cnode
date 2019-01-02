@@ -80,13 +80,13 @@ export default {
     // max-height: 70%;
 
     @media (max-width: 767px) {
-      width: 300px;
+      min-width: 300px;
       max-width: 300px;
       max-height: 50%;
     }
 
     @media (min-width: 768px) {
-      width: 400px;
+      min-width: 400px;
       max-width: 400px;
       max-height: 70%;
     }
