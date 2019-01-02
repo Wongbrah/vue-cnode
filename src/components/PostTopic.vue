@@ -62,7 +62,9 @@ export default {
   },
   methods: {
     close () {
-      this.$store.commit('switchPostTopic')
+      this.$store.commit('setIsShowPostTopic', {
+        switch: false
+      })
     },
     async checkForm () {
       this.tabErr = false
@@ -97,7 +99,9 @@ export default {
           return false
         })
         if (res.success) {
-          this.$store.commit('switchPostTopic')
+          this.$store.commit('setIsShowPostTopic', {
+            switch: false
+          })
           this.$router.push(`topic/${res.topic_id}`)
         } else {
           this.postErr = true

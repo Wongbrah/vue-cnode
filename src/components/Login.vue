@@ -41,7 +41,9 @@ export default {
   },
   methods: {
     close () {
-      this.$store.commit('switchLogin')
+      this.$store.commit('setIsShowLogin', {
+        switch: false
+      })
     },
     async checkForm (e) {
       [this.blankErr, this.tokenErr] = [false, false]

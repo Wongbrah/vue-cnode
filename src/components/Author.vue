@@ -26,7 +26,9 @@ export default {
   },
   methods: {
     close () {
-      this.$store.commit('switchAuthor')
+      this.$store.commit('setIsShowAuthor', {
+        switch: false
+      })
     }
   }
 }

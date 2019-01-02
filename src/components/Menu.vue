@@ -73,10 +73,14 @@ export default {
     commit (event) {
       if (this.Auth) {
         this.$store.commit('switchMenu')
-        this.$store.commit(`switch${event}`)
+        this.$store.commit(`setIsShow${event}`, {
+          switch: true
+        })
       } else {
         this.$store.commit('switchMenu')
-        this.$store.commit(`switchLogin`)
+        this.$store.commit('setIsShowLogin', {
+          switch: true
+        })
       }
     },
     route (to) {
@@ -85,7 +89,9 @@ export default {
         this.$router.push(`${to}/${this.$store.state.loginName}`)
       } else {
         this.$store.commit('switchMenu')
-        this.$store.commit(`switchLogin`)
+        this.$store.commit('setIsShowLogin', {
+          switch: true
+        })
       }
     },
     login () {
@@ -94,7 +100,9 @@ export default {
         this.$router.push(`/user/${this.$store.state.loginName}`)
       } else {
         this.$store.commit('switchMenu')
-        this.$store.commit(`switchLogin`)
+        this.$store.commit('setIsShowLogin', {
+          switch: true
+        })
       }
     },
     logout () {
@@ -106,7 +114,9 @@ export default {
     },
     author () {
       this.$store.commit('switchMenu')
-      this.$store.commit(`switchAuthor`)
+      this.$store.commit('setIsShowAuthor', {
+        switch: true
+      })
     }
   }
 }

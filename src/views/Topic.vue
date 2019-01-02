@@ -107,7 +107,9 @@ export default {
           }
         }
       } else {
-        this.$store.commit(`switchLogin`)
+        this.$store.commit('setIsShowLogin', {
+          switch: true
+        })
       }
     },
     async checkCollect () {

@@ -40,7 +40,9 @@ export default {
   },
   methods: {
     close () {
-      this.$store.commit('switchCollect')
+      this.$store.commit('setIsShowCollect', {
+        switch: false
+      })
     }
   },
   watch: {

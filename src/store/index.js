@@ -27,8 +27,8 @@ const store = new Vuex.Store({
     switchMenu (state) {
       state.isShowMenu = !state.isShowMenu
     },
-    switchLogin (state) {
-      state.isShowLogin = !state.isShowLogin
+    setIsShowLogin (state, payload) {
+      state.isShowLogin = payload.switch
     },
     switchNav (state) {
       state.isShowNav = !state.isShowNav
@@ -36,17 +36,17 @@ const store = new Vuex.Store({
     setLoading (state, payload) {
       state.isShowLoading = payload.switch
     },
-    switchPostTopic (state) {
-      state.isShowPostTopic = !state.isShowPostTopic
+    setIsShowPostTopic (state, payload) {
+      state.isShowPostTopic = payload.switch
     },
-    switchCollect (state) {
-      state.isShowCollect = !state.isShowCollect
+    setIsShowCollect (state, payload) {
+      state.isShowCollect = payload.switch
     },
-    switchMessage (state) {
-      state.isShowMessage = !state.isShowMessage
+    setIsShowMessage (state, payload) {
+      state.isShowMessage = payload.switch
     },
-    switchAuthor (state) {
-      state.isShowAuthor = !state.isShowAuthor
+    setIsShowAuthor (state, payload) {
+      state.isShowAuthor = payload.switch
     },
     setUnreadMsg (state, payload) {
       state.unreadMsg = payload.count

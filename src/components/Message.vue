@@ -45,7 +45,9 @@ export default {
   },
   methods: {
     close () {
-      this.$store.commit('switchMessage')
+      this.$store.commit('setIsShowMessage', {
+        switch: false
+      })
     }
   },
   async mounted () {
