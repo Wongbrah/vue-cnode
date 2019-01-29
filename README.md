@@ -12,6 +12,7 @@ https://cnodejs.org/api
 
 ## 在线展示
 http://wongbrah.top/vue-cnode
+（由于不可（G）抗力（F）因素（W），暂时无法显示，请clone到本地查看）
 
 ## 技术栈：
 前端：Vue.js, vue-cli, vue-router, vuex, axios, vue-infinite-scroll
